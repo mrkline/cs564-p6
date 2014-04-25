@@ -1,0 +1,12 @@
+This submission is for team SQLflix, aka Matt Kline and Mikkel Nielsen.
+
+Matt Kline: cs login: mkline 9063717681
+Mikkel Nielsen: cs login: mikkel 906458934
+
+Submission notes:
+
+To aid in debugging of our code and our ability to read the provided code,
+some changes have been made to provided code.
+Indentation has been normalized using Astyle and by hand,
+.h and .C extensions were changed to .hpp and .cpp, respectively,
+the hash function was fixed as described on Moodle.
