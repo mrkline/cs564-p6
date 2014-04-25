@@ -2,7 +2,7 @@
 # Makefile for Minirel
 #
 
-.SUFFIXES: .o .C
+.SUFFIXES: .o .cpp
 
 #
 # Compiler and loader definitions
@@ -36,11 +36,11 @@ DBOBJS =	catalog.o buf.o bufHash.o db.o heapfile.o error.o page.o
 
 NONCATOBJS =	buf.o db.o heapfile.o error.o page.o sort.o 
 
-SRCS =		buf.C  bufHash.C db.C heapfile.C error.C page.C \
-		sort.C catalog.C \
-		create.C destroy.C help.C load.C print.C \
-		quit.C insert.C delete.C select.C join.C minirel.C \
-		dbcreate.C dbdestroy.C partition.C joinHT.C
+SRCS =		buf.cpp  bufHash.cpp db.cpp heapfile.cpp error.cpp page.cpp \
+		sort.cpp catalog.cpp \
+		create.cpp destroy.cpp help.cpp load.cpp print.cpp \
+		quit.cpp insert.cpp delete.cpp select.cpp join.cpp minirel.cpp \
+		dbcreate.cpp dbdestroy.cpp partition.cpp joinHT.cpp
 
 LIBS =		parser.o
 
@@ -64,7 +64,7 @@ minirel.pure:	minirel.o $(OBJS) $(LIBS)
 dbcreate.pure:	dbcreate.o $(DBOBJS) $(LIBS)
 		$(PURIFY) $(CXX) -o $@ dbcreate.o $(DBOBJS) $(LDFLAGS) -lm
 
-.C.o:
+.cpp.o:
 		$(CXX) $(CXXFLAGS) -c $<
 
 clean:
