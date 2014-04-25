@@ -22,14 +22,14 @@ extern AttrCatalog *attrCat;
 
 void UT_Quit(void)
 {
-  // close relcat and attrcat
+	// close relcat and attrcat
 
-  delete relCat;
-  delete attrCat;
+	delete relCat;
+	delete attrCat;
 
-  // delete bufMgr to flush out all dirty pages
+	// delete bufMgr to flush out all dirty pages
 
-  delete bufMgr;
+	delete bufMgr;
 
-  exit(1);
+	exit(1);
 }

@@ -27,39 +27,39 @@ using namespace std;
 
 const Status RelCatalog::help(const string & relation)
 {
-  Status status;
-  RelDesc rd;
-  AttrDesc *attrs;
-  int attrCnt;
+	Status status;
+	RelDesc rd;
+	AttrDesc *attrs;
+	int attrCnt;
 
-  if (relation.empty())
-    return UT_Print(RELCATNAME);
+	if (relation.empty())
+		return UT_Print(RELCATNAME);
 
-  // get relation data
+	// get relation data
 
-  if ((status = getInfo(relation, rd)) != OK)
-    return status;
+	if ((status = getInfo(relation, rd)) != OK)
+		return status;
 
-  // get attribute data
+	// get attribute data
 
-  if ((status = attrCat->getRelInfo(relation, attrCnt, attrs)) != OK)
-    return status;
+	if ((status = attrCat->getRelInfo(relation, attrCnt, attrs)) != OK)
+		return status;
 
-  // print relation information
+	// print relation information
 
-  cout << "Relation name: " << rd.relName << " ("
-       << rd.attrCnt << " attributes)" << endl;
+	cout << "Relation name: " << rd.relName << " ("
+	     << rd.attrCnt << " attributes)" << endl;
 
-  printf("%16.16s   Off   T   Len   I\n\n",  "Attribute name");
-  for(int i = 0; i < attrCnt; i++) {
-    Datatype t = (Datatype)attrs[i].attrType;
-    printf("%16.16s   %3d   %c   %3d\n", attrs[i].attrName,
-	   attrs[i].attrOffset,
-	   (t == INTEGER ? 'i' : (t == FLOAT ? 'f' : 's')),
-	   attrs[i].attrLen);
-  }
+	printf("%16.16s   Off   T   Len   I\n\n",  "Attribute name");
+	for(int i = 0; i < attrCnt; i++) {
+		Datatype t = (Datatype)attrs[i].attrType;
+		printf("%16.16s   %3d   %c   %3d\n", attrs[i].attrName,
+		       attrs[i].attrOffset,
+		       (t == INTEGER ? 'i' : (t == FLOAT ? 'f' : 's')),
+		       attrs[i].attrLen);
+	}
 
-  free(attrs);
+	free(attrs);
 
-  return OK;
+	return OK;
 }

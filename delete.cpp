@@ -10,14 +10,14 @@
  * 	an error code otherwise
  */
 
-const Status QU_Delete(const string & relation, 
-		       const string & attrName, 
-		       const Operator op,
-		       const Datatype type, 
-		       const char *attrValue)
+const Status QU_Delete(const string & relation,
+                       const string & attrName,
+                       const Operator op,
+                       const Datatype type,
+                       const char *attrValue)
 {
 // part 6
-return OK;
+	return OK;
 
 
 

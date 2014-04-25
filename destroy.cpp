@@ -15,28 +15,28 @@
 
 const Status RelCatalog::destroyRel(const string & relation)
 {
-  Status status;
+	Status status;
 
-  if (relation.empty() || 
-      relation == string(RELCATNAME) || 
-      relation == string(ATTRCATNAME))
-    return BADCATPARM;
+	if (relation.empty() ||
+	        relation == string(RELCATNAME) ||
+	        relation == string(ATTRCATNAME))
+		return BADCATPARM;
 
-  // delete attrcat entries
+	// delete attrcat entries
 
-  if ((status = attrCat->dropRelation(relation)) != OK)
-    return status;
+	if ((status = attrCat->dropRelation(relation)) != OK)
+		return status;
 
-  // delete entry from relcat
+	// delete entry from relcat
 
-  if ((status = removeInfo(relation)) != OK)
-    return status;
+	if ((status = removeInfo(relation)) != OK)
+		return status;
 
-  // destroy file
-  if ((status = destroyHeapFile(relation)) != OK)
-    return status;
+	// destroy file
+	if ((status = destroyHeapFile(relation)) != OK)
+		return status;
 
-  return OK;
+	return OK;
 }
 
 
@@ -52,28 +52,28 @@ const Status RelCatalog::destroyRel(const string & relation)
 
 const Status AttrCatalog::dropRelation(const string & relation)
 {
-  Status status;
-  AttrDesc *attrs;
-  int attrCnt, i;
+	Status status;
+	AttrDesc *attrs;
+	int attrCnt, i;
 
-  if (relation.empty())
-    return BADCATPARM;
+	if (relation.empty())
+		return BADCATPARM;
 
-  // get attribute information
+	// get attribute information
 
-  if ((status = getRelInfo(relation, attrCnt, attrs)) != OK)
-    return status;
+	if ((status = getRelInfo(relation, attrCnt, attrs)) != OK)
+		return status;
 
-  // remove entries from catalog
+	// remove entries from catalog
 
-  for(i = 0; i < attrCnt; i++) {
-    if ((status = removeInfo(relation, attrs[i].attrName)) != OK)
-      return status;
-  }
+	for(i = 0; i < attrCnt; i++) {
+		if ((status = removeInfo(relation, attrs[i].attrName)) != OK)
+			return status;
+	}
 
-  free(attrs);
+	free(attrs);
 
-  return OK;
+	return OK;
 }
 
 

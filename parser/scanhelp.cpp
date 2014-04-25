@@ -13,17 +13,17 @@ static int lower(char *dst, char *src, int max);
 
 static char *string_alloc(int len)
 {
-  char *s;
+	char *s;
 
-  if (charptr + len > MAXCHAR) {
-    fprintf(stderr, "out of memory\n");
-    exit(1);
-  }
+	if (charptr + len > MAXCHAR) {
+		fprintf(stderr, "out of memory\n");
+		exit(1);
+	}
 
-  s = charpool + charptr;
-  charptr += len;
-  
-  return s;
+	s = charpool + charptr;
+	charptr += len;
+
+	return s;
 }
 
 
@@ -36,7 +36,7 @@ static char *string_alloc(int len)
 
 void reset_charptr(void)
 {
-  charptr = 0;
+	charptr = 0;
 }
 
 
@@ -48,8 +48,8 @@ void reset_charptr(void)
 
 void reset_scanner(void)
 {
-  charptr = 0;
-  yyrestart(yyin);
+	charptr = 0;
+	yyrestart(yyin);
 }
 
 
@@ -65,67 +65,67 @@ void reset_scanner(void)
 
 static int get_id(char *s)
 {
-  static char string[MAXSTRINGLEN];
-  int len;
+	static char string[MAXSTRINGLEN];
+	int len;
 
-  if ((len = lower(string, s, MAXSTRINGLEN)) == MAXSTRINGLEN)
-    return NOTOKEN;
-  if (!strcmp(string, "select"))
-    return yylval.ival = RW_SELECT;
-  if (!strcmp(string, "insert"))
-    return yylval.ival = RW_INSERT;
-  if (!strcmp(string, "delete"))
-    return yylval.ival = RW_DELETE;
-  if (!strcmp(string, "create"))
-    return yylval.ival = RW_CREATE;
-  if (!strcmp(string, "destroy"))
-    return yylval.ival = RW_DESTROY;
-  if (!strcmp(string, "buildindex"))
-    return yylval.ival = RW_BUILD;
-  if (!strcmp(string, "rebuildindex"))
-    return yylval.ival = RW_REBUILD;
-  if (!strcmp(string, "dropindex"))
-    return yylval.ival = RW_DROP;
-  if (!strcmp(string, "load"))
-    return yylval.ival = RW_LOAD;
-  if (!strcmp(string, "print"))
-    return yylval.ival = RW_PRINT;
-  if (!strcmp(string, "help"))
-    return yylval.ival = RW_HELP;
-  if (!strcmp(string, "quit"))
-    return yylval.ival = RW_QUIT;
-  if (!strcmp(string, "into"))
-    return yylval.ival = RW_INTO;
-  if (!strcmp(string, "where"))
-    return yylval.ival = RW_WHERE;
-  if (!strcmp(string, "primary"))
-    return yylval.ival = RW_PRIMARY;
-  if (!strcmp(string, "numbuckets"))
-    return yylval.ival = RW_NUMBUCKETS;
-  if (!strcmp(string, "all"))
-    return yylval.ival = RW_ALL;
-  if (!strcmp(string, "from"))
-    return yylval.ival = RW_FROM;
-  if (!strcmp(string, "as"))
-    return yylval.ival = RW_AS;
-  if (!strcmp(string, "table"))
-    return yylval.ival = RW_TABLE;
-  if (!strcmp(string, "and"))
-    return yylval.ival = RW_AND;
-  if (!strcmp(string, "or"))
-    return yylval.ival = RW_OR;
-  if (!strcmp(string, "not"))
-    return yylval.ival = RW_NOT;
-  if (!strcmp(string, "values"))
-    return yylval.ival = RW_VALUES;
-  if (!strcmp(string, "int"))
-    return yylval.ival = INT_TYPE;
-  if (!strcmp(string, "real"))
-    return yylval.ival = REAL_TYPE;
-  if (!strcmp(string, "char"))
-    return yylval.ival = CHAR_TYPE;
-  yylval.sval = mk_string(s, len);
-  return T_STRING;
+	if ((len = lower(string, s, MAXSTRINGLEN)) == MAXSTRINGLEN)
+		return NOTOKEN;
+	if (!strcmp(string, "select"))
+		return yylval.ival = RW_SELECT;
+	if (!strcmp(string, "insert"))
+		return yylval.ival = RW_INSERT;
+	if (!strcmp(string, "delete"))
+		return yylval.ival = RW_DELETE;
+	if (!strcmp(string, "create"))
+		return yylval.ival = RW_CREATE;
+	if (!strcmp(string, "destroy"))
+		return yylval.ival = RW_DESTROY;
+	if (!strcmp(string, "buildindex"))
+		return yylval.ival = RW_BUILD;
+	if (!strcmp(string, "rebuildindex"))
+		return yylval.ival = RW_REBUILD;
+	if (!strcmp(string, "dropindex"))
+		return yylval.ival = RW_DROP;
+	if (!strcmp(string, "load"))
+		return yylval.ival = RW_LOAD;
+	if (!strcmp(string, "print"))
+		return yylval.ival = RW_PRINT;
+	if (!strcmp(string, "help"))
+		return yylval.ival = RW_HELP;
+	if (!strcmp(string, "quit"))
+		return yylval.ival = RW_QUIT;
+	if (!strcmp(string, "into"))
+		return yylval.ival = RW_INTO;
+	if (!strcmp(string, "where"))
+		return yylval.ival = RW_WHERE;
+	if (!strcmp(string, "primary"))
+		return yylval.ival = RW_PRIMARY;
+	if (!strcmp(string, "numbuckets"))
+		return yylval.ival = RW_NUMBUCKETS;
+	if (!strcmp(string, "all"))
+		return yylval.ival = RW_ALL;
+	if (!strcmp(string, "from"))
+		return yylval.ival = RW_FROM;
+	if (!strcmp(string, "as"))
+		return yylval.ival = RW_AS;
+	if (!strcmp(string, "table"))
+		return yylval.ival = RW_TABLE;
+	if (!strcmp(string, "and"))
+		return yylval.ival = RW_AND;
+	if (!strcmp(string, "or"))
+		return yylval.ival = RW_OR;
+	if (!strcmp(string, "not"))
+		return yylval.ival = RW_NOT;
+	if (!strcmp(string, "values"))
+		return yylval.ival = RW_VALUES;
+	if (!strcmp(string, "int"))
+		return yylval.ival = INT_TYPE;
+	if (!strcmp(string, "real"))
+		return yylval.ival = REAL_TYPE;
+	if (!strcmp(string, "char"))
+		return yylval.ival = CHAR_TYPE;
+	yylval.sval = mk_string(s, len);
+	return T_STRING;
 }
 
 
@@ -140,16 +140,16 @@ static int get_id(char *s)
 
 static int lower(char *dst, char *src, int max)
 {
-  int len;
-    
-  for(len = 0; len < max && src[len] != '\0'; ++len) {
-    dst[len] = src[len];
-    if (src[len] >= 'A' && src[len] <= 'Z')
-      dst[len] += 'a' - 'A';
-  }
-  dst[len] = '\0';
+	int len;
 
-  return len;
+	for(len = 0; len < max && src[len] != '\0'; ++len) {
+		dst[len] = src[len];
+		if (src[len] >= 'A' && src[len] <= 'Z')
+			dst[len] += 'a' - 'A';
+	}
+	dst[len] = '\0';
+
+	return len;
 }
 
 
@@ -163,11 +163,11 @@ static int lower(char *dst, char *src, int max)
 
 static char *get_qstring(char *qstring, int len)
 {
-  // replace ending quote with \0
-  qstring[len - 1] = '\0';
+	// replace ending quote with \0
+	qstring[len - 1] = '\0';
 
-  // copy everything following beginning quote
-  return mk_string(qstring + 1, len - 2);
+	// copy everything following beginning quote
+	return mk_string(qstring + 1, len - 2);
 }
 
 
@@ -181,15 +181,15 @@ static char *get_qstring(char *qstring, int len)
 
 static char *mk_string(char *s, int len)
 {
-  char *copy;
+	char *copy;
 
-  // allocate space for new string
-  if ((copy = string_alloc(len + 1)) == NULL) {
-    printf("out of string space\n");
-    exit(1);
-  }
-  
-  // copy the string
-  strncpy(copy, s, len + 1);
-  return copy;
+	// allocate space for new string
+	if ((copy = string_alloc(len + 1)) == NULL) {
+		printf("out of string space\n");
+		exit(1);
+	}
+
+	// copy the string
+	strncpy(copy, s, len + 1);
+	return copy;
 }

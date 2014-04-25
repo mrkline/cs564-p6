@@ -24,9 +24,9 @@ static char *find_match_in_alias(NODE* alias, char *rel_alias);
 
 void reset_parser(void)
 {
-  extern void reset_scanner();
-  reset_scanner();
-  nodeptr = 0;
+	extern void reset_scanner();
+	reset_scanner();
+	nodeptr = 0;
 }
 
 
@@ -42,17 +42,17 @@ static void (*cleanup_func)() = NULL;
 
 void new_query(void)
 {
-  extern void reset_charptr();
-  nodeptr = 0;
-  reset_charptr();
-  if(cleanup_func)
-    (*cleanup_func)();
+	extern void reset_charptr();
+	nodeptr = 0;
+	reset_charptr();
+	if(cleanup_func)
+		(*cleanup_func)();
 }
 
 
 void register_cleanup_function(void (*func)())
 {
-  cleanup_func = func;
+	cleanup_func = func;
 }
 
 
@@ -63,21 +63,21 @@ void register_cleanup_function(void (*func)())
 
 NODE *newnode(int kind)
 {
-  NODE *n;
+	NODE *n;
 
-  // if we've used up all of the nodes then error
-  if(nodeptr == MAXNODE){
-    cerr << "Out of Memory !" << endl;
-    exit(1);
-  }
+	// if we've used up all of the nodes then error
+	if(nodeptr == MAXNODE) {
+		cerr << "Out of Memory !" << endl;
+		exit(1);
+	}
 
-  // get the next node
-  n = nodepool + nodeptr;
-  ++nodeptr;
-  
-  // initialize the `kind' field
-  n->kind = (NODEKIND)kind;
-  return n;
+	// get the next node
+	n = nodepool + nodeptr;
+	++nodeptr;
+
+	// initialize the `kind' field
+	n->kind = (NODEKIND)kind;
+	return n;
 }
 
 
@@ -88,12 +88,12 @@ NODE *newnode(int kind)
 
 NODE *query_node(char *relname, NODE *attrlist, NODE *qual)
 {
-  NODE *n = newnode(N_QUERY);
+	NODE *n = newnode(N_QUERY);
 
-  n->u.QUERY.relname = relname;
-  n->u.QUERY.attrlist = attrlist;
-  n->u.QUERY.qual = qual;
-  return n;
+	n->u.QUERY.relname = relname;
+	n->u.QUERY.attrlist = attrlist;
+	n->u.QUERY.qual = qual;
+	return n;
 }
 
 
@@ -104,11 +104,11 @@ NODE *query_node(char *relname, NODE *attrlist, NODE *qual)
 
 NODE *insert_node(char *relname, NODE *attrlist)
 {
-  NODE *n = newnode(N_INSERT);
+	NODE *n = newnode(N_INSERT);
 
-  n->u.INSERT.relname = relname;
-  n->u.INSERT.attrlist = attrlist;
-  return n;
+	n->u.INSERT.relname = relname;
+	n->u.INSERT.attrlist = attrlist;
+	return n;
 }
 
 
@@ -119,11 +119,11 @@ NODE *insert_node(char *relname, NODE *attrlist)
 
 NODE *delete_node(char *relname, NODE *qual)
 {
-  NODE *n = newnode(N_DELETE);
-  
-  n->u.DELETE.relname = relname;
-  n->u.DELETE.qual = qual;
-  return n;
+	NODE *n = newnode(N_DELETE);
+
+	n->u.DELETE.relname = relname;
+	n->u.DELETE.qual = qual;
+	return n;
 }
 
 
@@ -134,12 +134,12 @@ NODE *delete_node(char *relname, NODE *qual)
 
 NODE *create_node(char *relname, NODE *attrlist, NODE *primattr)
 {
-  NODE *n = newnode(N_CREATE);
-    
-  n->u.CREATE.relname = relname;
-  n->u.CREATE.attrlist = attrlist;
-  n->u.CREATE.primattr = primattr;
-  return n;
+	NODE *n = newnode(N_CREATE);
+
+	n->u.CREATE.relname = relname;
+	n->u.CREATE.attrlist = attrlist;
+	n->u.CREATE.primattr = primattr;
+	return n;
 }
 
 
@@ -150,10 +150,10 @@ NODE *create_node(char *relname, NODE *attrlist, NODE *primattr)
 
 NODE *destroy_node(char *relname)
 {
-  NODE *n = newnode(N_DESTROY);
-  
-  n->u.DESTROY.relname = relname;
-  return n;
+	NODE *n = newnode(N_DESTROY);
+
+	n->u.DESTROY.relname = relname;
+	return n;
 }
 
 
@@ -164,12 +164,12 @@ NODE *destroy_node(char *relname)
 
 NODE *build_node(char *relname, char *attrname, int nbuckets)
 {
-  NODE *n = newnode(N_BUILD);
+	NODE *n = newnode(N_BUILD);
 
-  n->u.BUILD.relname = relname;
-  n->u.BUILD.attrname = attrname;
-  n->u.BUILD.nbuckets = nbuckets;
-  return n;
+	n->u.BUILD.relname = relname;
+	n->u.BUILD.attrname = attrname;
+	n->u.BUILD.nbuckets = nbuckets;
+	return n;
 }
 
 
@@ -180,12 +180,12 @@ NODE *build_node(char *relname, char *attrname, int nbuckets)
 
 NODE *rebuild_node(char *relname, char *attrname, int nbuckets)
 {
-  NODE *n = newnode(N_REBUILD);
+	NODE *n = newnode(N_REBUILD);
 
-  n->u.BUILD.relname = relname;
-  n->u.BUILD.attrname = attrname;
-  n->u.BUILD.nbuckets = nbuckets;
-  return n;
+	n->u.BUILD.relname = relname;
+	n->u.BUILD.attrname = attrname;
+	n->u.BUILD.nbuckets = nbuckets;
+	return n;
 }
 
 
@@ -196,11 +196,11 @@ NODE *rebuild_node(char *relname, char *attrname, int nbuckets)
 
 NODE *drop_node(char *relname, char *attrname)
 {
-  NODE *n = newnode(N_DROP);
+	NODE *n = newnode(N_DROP);
 
-  n->u.DROP.relname = relname;
-  n->u.DROP.attrname = attrname;
-  return n;
+	n->u.DROP.relname = relname;
+	n->u.DROP.attrname = attrname;
+	return n;
 }
 
 
@@ -211,11 +211,11 @@ NODE *drop_node(char *relname, char *attrname)
 
 NODE *load_node(char *relname, char *filename)
 {
-  NODE *n = newnode(N_LOAD);
-  
-  n->u.LOAD.relname = relname;
-  n->u.LOAD.filename = filename;
-  return n;
+	NODE *n = newnode(N_LOAD);
+
+	n->u.LOAD.relname = relname;
+	n->u.LOAD.filename = filename;
+	return n;
 }
 
 
@@ -226,10 +226,10 @@ NODE *load_node(char *relname, char *filename)
 
 NODE *print_node(char *relname)
 {
-  NODE *n = newnode(N_PRINT);
+	NODE *n = newnode(N_PRINT);
 
-  n->u.PRINT.relname = relname;
-  return n;
+	n->u.PRINT.relname = relname;
+	return n;
 }
 
 
@@ -240,10 +240,10 @@ NODE *print_node(char *relname)
 
 NODE *help_node(char *relname)
 {
-  NODE *n = newnode(N_HELP);
-    
-  n->u.HELP.relname = relname;
-  return n;
+	NODE *n = newnode(N_HELP);
+
+	n->u.HELP.relname = relname;
+	return n;
 }
 
 
@@ -254,12 +254,12 @@ NODE *help_node(char *relname)
 
 NODE *select_node(NODE *selattr, int op, NODE *value)
 {
-  NODE *n = newnode(N_SELECT);
+	NODE *n = newnode(N_SELECT);
 
-  n->u.SELECT.selattr = selattr;
-  n->u.SELECT.op = op;
-  n->u.SELECT.value = value;
-  return n;
+	n->u.SELECT.selattr = selattr;
+	n->u.SELECT.op = op;
+	n->u.SELECT.value = value;
+	return n;
 }
 
 
@@ -270,12 +270,12 @@ NODE *select_node(NODE *selattr, int op, NODE *value)
 
 NODE *join_node(NODE *joinattr1, int op, NODE *joinattr2)
 {
-  NODE *n = newnode(N_JOIN);
+	NODE *n = newnode(N_JOIN);
 
-  n->u.JOIN.joinattr1 = joinattr1;
-  n->u.JOIN.op = op;
-  n->u.JOIN.joinattr2 = joinattr2;
-  return n;
+	n->u.JOIN.joinattr1 = joinattr1;
+	n->u.JOIN.op = op;
+	n->u.JOIN.joinattr2 = joinattr2;
+	return n;
 }
 
 
@@ -286,11 +286,11 @@ NODE *join_node(NODE *joinattr1, int op, NODE *joinattr2)
 
 NODE *primattr_node(char *attrname, int nbuckets)
 {
-  NODE *n = newnode(N_PRIMATTR);
+	NODE *n = newnode(N_PRIMATTR);
 
-  n->u.PRIMATTR.attrname = attrname;
-  n->u.PRIMATTR.nbuckets = nbuckets;
-  return n;
+	n->u.PRIMATTR.attrname = attrname;
+	n->u.PRIMATTR.nbuckets = nbuckets;
+	return n;
 }
 
 
@@ -301,11 +301,11 @@ NODE *primattr_node(char *attrname, int nbuckets)
 
 NODE *qualattr_node(char *relname, char *attrname)
 {
-  NODE *n = newnode(N_QUALATTR);
+	NODE *n = newnode(N_QUALATTR);
 
-  n->u.QUALATTR.relname = relname;
-  n->u.QUALATTR.attrname = attrname;
-  return n;
+	n->u.QUALATTR.relname = relname;
+	n->u.QUALATTR.attrname = attrname;
+	return n;
 }
 
 
@@ -316,11 +316,11 @@ NODE *qualattr_node(char *relname, char *attrname)
 
 NODE *attrval_node(char *attrname, NODE *value)
 {
-  NODE *n = newnode(N_ATTRVAL);
+	NODE *n = newnode(N_ATTRVAL);
 
-  n->u.ATTRVAL.attrname = attrname;
-  n->u.ATTRVAL.value = value;
-  return n;
+	n->u.ATTRVAL.attrname = attrname;
+	n->u.ATTRVAL.value = value;
+	return n;
 }
 
 
@@ -331,11 +331,11 @@ NODE *attrval_node(char *attrname, NODE *value)
 
 NODE *attrtype_node(char *attrname, int type /* char *type */)
 {
-  NODE *n = newnode(N_ATTRTYPE);
+	NODE *n = newnode(N_ATTRTYPE);
 
-  n->u.ATTRTYPE.attrname = attrname;
-  n->u.ATTRTYPE.type = type;
-  return n;
+	n->u.ATTRTYPE.attrname = attrname;
+	n->u.ATTRTYPE.type = type;
+	return n;
 }
 
 
@@ -346,12 +346,12 @@ NODE *attrtype_node(char *attrname, int type /* char *type */)
 
 NODE *int_node(int ival)
 {
-  NODE *n = newnode(N_VALUE);
+	NODE *n = newnode(N_VALUE);
 
-  n->u.VALUE.type = INTEGER;
-  n->u.VALUE.u.ival = ival;
-  n->u.VALUE.len = 0;
-  return n;
+	n->u.VALUE.type = INTEGER;
+	n->u.VALUE.u.ival = ival;
+	n->u.VALUE.len = 0;
+	return n;
 }
 
 
@@ -362,12 +362,12 @@ NODE *int_node(int ival)
 
 NODE *float_node(float rval)
 {
-  NODE *n = newnode(N_VALUE);
+	NODE *n = newnode(N_VALUE);
 
-  n->u.VALUE.type = FLOAT;
-  n->u.VALUE.u.rval = (float)rval;
-  n->u.VALUE.len = 0;
-  return n;
+	n->u.VALUE.type = FLOAT;
+	n->u.VALUE.u.rval = (float)rval;
+	n->u.VALUE.len = 0;
+	return n;
 }
 
 
@@ -378,12 +378,12 @@ NODE *float_node(float rval)
 
 NODE *string_node(char *s)
 {
-  NODE *n = newnode(N_VALUE);
+	NODE *n = newnode(N_VALUE);
 
-  n->u.VALUE.type = STRING;
-  n->u.VALUE.u.sval = s;
-  n->u.VALUE.len = strlen(s);
-  return n;
+	n->u.VALUE.type = STRING;
+	n->u.VALUE.u.sval = s;
+	n->u.VALUE.len = strlen(s);
+	return n;
 }
 
 
@@ -394,11 +394,11 @@ NODE *string_node(char *s)
 
 NODE *list_node(NODE *n)
 {
-  NODE *list = newnode(N_LIST);
+	NODE *list = newnode(N_LIST);
 
-  list->u.LIST.self = n;
-  list->u.LIST.next = NULL;
-  return list;
+	list->u.LIST.self = n;
+	list->u.LIST.next = NULL;
+	return list;
 }
 
 
@@ -410,25 +410,25 @@ NODE *list_node(NODE *n)
 
 NODE *prepend(NODE *n, NODE *list)
 {
-  NODE *newlist = newnode(N_LIST);
+	NODE *newlist = newnode(N_LIST);
 
-  newlist->u.LIST.self = n;
-  newlist->u.LIST.next = list;
-  return newlist;
+	newlist->u.LIST.self = n;
+	newlist->u.LIST.next = list;
+	return newlist;
 }
 
 //
-// alias node 
+// alias node
 // store the alias of a relation in a query
 //
 
 NODE *alias_node(char *relname, char *alias)
 {
-  NODE *n = newnode(N_ALIAS);
-  
-  n->u.ALIAS.relname = relname;
-  n->u.ALIAS.alias = alias;
-  return n;
+	NODE *n = newnode(N_ALIAS);
+
+	n->u.ALIAS.relname = relname;
+	n->u.ALIAS.alias = alias;
+	return n;
 }
 
 //
@@ -439,24 +439,24 @@ NODE *alias_node(char *relname, char *alias)
 
 NODE *merge_attr_value_list(NODE *attr_list, NODE *value_list)
 {
-  NODE* attr_ptr= attr_list;
-  NODE* value_ptr = value_list;
+	NODE* attr_ptr= attr_list;
+	NODE* value_ptr = value_list;
 
-  while (attr_ptr){
-    if (value_ptr == NULL) {
-      fprintf(stderr,"Error: Value list is shorter than attr list!\n");
-      return NULL;
-    }
-    attr_ptr->u.LIST.self->u.ATTRVAL.value =  value_ptr->u.LIST.self;
-    attr_ptr = attr_ptr->u.LIST.next;
-    value_ptr = value_ptr->u.LIST.next;
-  }
+	while (attr_ptr) {
+		if (value_ptr == NULL) {
+			fprintf(stderr,"Error: Value list is shorter than attr list!\n");
+			return NULL;
+		}
+		attr_ptr->u.LIST.self->u.ATTRVAL.value =  value_ptr->u.LIST.self;
+		attr_ptr = attr_ptr->u.LIST.next;
+		value_ptr = value_ptr->u.LIST.next;
+	}
 
-  if (value_ptr != NULL) {
-    fprintf(stderr, "Error: Value list is longer than attr list!\n");
-    return NULL;
-  }
-  return attr_list;
+	if (value_ptr != NULL) {
+		fprintf(stderr, "Error: Value list is longer than attr list!\n");
+		return NULL;
+	}
+	return attr_list;
 }
 
 
@@ -466,22 +466,22 @@ NODE *merge_attr_value_list(NODE *attr_list, NODE *value_list)
 // return the matched relname or NULL if no match
 //
 char *find_match_in_alias(NODE *alias, char *rel_alias)
-{ 
-  NODE *n = alias;
-  
-  if (rel_alias == NULL) return NULL;
-  
-  while(n) {
-    if (!strcmp(n->u.LIST.self->u.ALIAS.relname, rel_alias)) 
-      return rel_alias;
-    if (n->u.LIST.self->u.ALIAS.alias) {
-      if (!strcmp(n->u.LIST.self->u.ALIAS.alias, rel_alias)) 
-        return n->u.LIST.self->u.ALIAS.relname;
-    }
-    n = n->u.LIST.next;
-  }
-  
-  return NULL;
+{
+	NODE *n = alias;
+
+	if (rel_alias == NULL) return NULL;
+
+	while(n) {
+		if (!strcmp(n->u.LIST.self->u.ALIAS.relname, rel_alias))
+			return rel_alias;
+		if (n->u.LIST.self->u.ALIAS.alias) {
+			if (!strcmp(n->u.LIST.self->u.ALIAS.alias, rel_alias))
+				return n->u.LIST.self->u.ALIAS.relname;
+		}
+		n = n->u.LIST.next;
+	}
+
+	return NULL;
 }
 
 //
@@ -490,33 +490,32 @@ char *find_match_in_alias(NODE *alias, char *rel_alias)
 //
 // returns the result list
 NODE *replace_alias_in_qualattr_list(NODE *alias, NODE *qualattr_list)
-{ 
-  NODE *n = qualattr_list;
-  char *s;
-  
-  while(n) {
-    s = n->u.LIST.self->u.QUALATTR.relname;
-    if ((s == NULL)&&(alias->u.LIST.next)) {
-      fprintf(stderr, "Error: must have relation qualifier before");
-      fprintf(stderr, "attributes if multi-table invovle in the query\n");
-      return NULL;
-    }
-    if (s == NULL) { //one table in query
-      n->u.LIST.self->u.QUALATTR.relname = alias->u.LIST.self->u.ALIAS.relname;
-    }
-    else {
-      s = find_match_in_alias(alias, s);
-      if (s == NULL) {
-      	fprintf(stderr, "Error: relation qualifier %s not found\n", 
-      	        n->u.LIST.self->u.QUALATTR.relname);
-      	return NULL;
-      }
-      n->u.LIST.self->u.QUALATTR.relname = s;
-    }
-    n = n->u.LIST.next;
-  }
-  
-  return qualattr_list;
+{
+	NODE *n = qualattr_list;
+	char *s;
+
+	while(n) {
+		s = n->u.LIST.self->u.QUALATTR.relname;
+		if ((s == NULL)&&(alias->u.LIST.next)) {
+			fprintf(stderr, "Error: must have relation qualifier before");
+			fprintf(stderr, "attributes if multi-table invovle in the query\n");
+			return NULL;
+		}
+		if (s == NULL) { //one table in query
+			n->u.LIST.self->u.QUALATTR.relname = alias->u.LIST.self->u.ALIAS.relname;
+		} else {
+			s = find_match_in_alias(alias, s);
+			if (s == NULL) {
+				fprintf(stderr, "Error: relation qualifier %s not found\n",
+				        n->u.LIST.self->u.QUALATTR.relname);
+				return NULL;
+			}
+			n->u.LIST.self->u.QUALATTR.relname = s;
+		}
+		n = n->u.LIST.next;
+	}
+
+	return qualattr_list;
 }
 
 //
@@ -527,73 +526,69 @@ NODE *replace_alias_in_qualattr_list(NODE *alias, NODE *qualattr_list)
 
 NODE *replace_alias_in_condition(NODE *alias, NODE *where)
 {
-  NODE *n = where;
-  char *s;
+	NODE *n = where;
+	char *s;
 
-  if (where==NULL) return NULL;
-  
-  if (n->kind == N_SELECT) {
-    s = n->u.SELECT.selattr->u.QUALATTR.relname;
-    if ((s == NULL)&&(alias->u.LIST.next)) {
-      fprintf(stderr, "Error: must have relation qualifier before");
-      fprintf(stderr, "attributes if multi-table invovle in the query\n");
-      return NULL;
-    }
-    if (s == NULL) { //one table in query
-      n->u.SELECT.selattr->u.QUALATTR.relname = 
-         alias->u.LIST.self->u.ALIAS.relname;
-    }
-    else {
-      s = find_match_in_alias(alias, s);
-      if (s == NULL) {
-        fprintf(stderr, "Error: relation qualifier %s not found\n", 
-                n->u.SELECT.selattr->u.QUALATTR.relname);
-        return NULL;
-      }
-      n->u.SELECT.selattr->u.QUALATTR.relname = s;
-    }
-  }
-  else { // N_JOIN
-    s = n->u.JOIN.joinattr1->u.QUALATTR.relname; //left node
-    if ((s == NULL)&&(alias->u.LIST.next)) {
-      fprintf(stderr, "Error: must have relation qualifier before");
-      fprintf(stderr, "attributes if multi-table invovle in the query\n");
-      return NULL;
-    }
-    if (s == NULL) { //one table in query
-      n->u.JOIN.joinattr1->u.QUALATTR.relname = 
-         alias->u.LIST.self->u.ALIAS.relname;
-    }
-    else {
-      s = find_match_in_alias(alias, s);
-      if (s == NULL) {
-        fprintf(stderr, "Error: relation qualifier %s not found\n", 
-                n->u.JOIN.joinattr1->u.QUALATTR.relname);
-        return NULL;
-      }
-      n->u.JOIN.joinattr1->u.QUALATTR.relname = s;
-    }
+	if (where==NULL) return NULL;
 
-    s = n->u.JOIN.joinattr2->u.QUALATTR.relname; //right node
-    if ((s == NULL)&&(alias->u.LIST.next)) {
-      fprintf(stderr, "Error: must have relation qualifier before");
-      fprintf(stderr, "attributes if multi-table invovle in the query\n");
-      return NULL;
-    }
-    if (s == NULL) { //one table in query
-      n->u.JOIN.joinattr2->u.QUALATTR.relname = 
-         alias->u.LIST.self->u.ALIAS.relname;
-    }
-    else {
-      s = find_match_in_alias(alias, s);
-      if (s == NULL) {
-        fprintf(stderr, "Error: relation qualifier %s not found\n", 
-                n->u.JOIN.joinattr2->u.QUALATTR.relname);
-        return NULL;
-      }
-      n->u.JOIN.joinattr2->u.QUALATTR.relname = s;
-    }     
-  }
-  
-  return where;
+	if (n->kind == N_SELECT) {
+		s = n->u.SELECT.selattr->u.QUALATTR.relname;
+		if ((s == NULL)&&(alias->u.LIST.next)) {
+			fprintf(stderr, "Error: must have relation qualifier before");
+			fprintf(stderr, "attributes if multi-table invovle in the query\n");
+			return NULL;
+		}
+		if (s == NULL) { //one table in query
+			n->u.SELECT.selattr->u.QUALATTR.relname =
+			    alias->u.LIST.self->u.ALIAS.relname;
+		} else {
+			s = find_match_in_alias(alias, s);
+			if (s == NULL) {
+				fprintf(stderr, "Error: relation qualifier %s not found\n",
+				        n->u.SELECT.selattr->u.QUALATTR.relname);
+				return NULL;
+			}
+			n->u.SELECT.selattr->u.QUALATTR.relname = s;
+		}
+	} else { // N_JOIN
+		s = n->u.JOIN.joinattr1->u.QUALATTR.relname; //left node
+		if ((s == NULL)&&(alias->u.LIST.next)) {
+			fprintf(stderr, "Error: must have relation qualifier before");
+			fprintf(stderr, "attributes if multi-table invovle in the query\n");
+			return NULL;
+		}
+		if (s == NULL) { //one table in query
+			n->u.JOIN.joinattr1->u.QUALATTR.relname =
+			    alias->u.LIST.self->u.ALIAS.relname;
+		} else {
+			s = find_match_in_alias(alias, s);
+			if (s == NULL) {
+				fprintf(stderr, "Error: relation qualifier %s not found\n",
+				        n->u.JOIN.joinattr1->u.QUALATTR.relname);
+				return NULL;
+			}
+			n->u.JOIN.joinattr1->u.QUALATTR.relname = s;
+		}
+
+		s = n->u.JOIN.joinattr2->u.QUALATTR.relname; //right node
+		if ((s == NULL)&&(alias->u.LIST.next)) {
+			fprintf(stderr, "Error: must have relation qualifier before");
+			fprintf(stderr, "attributes if multi-table invovle in the query\n");
+			return NULL;
+		}
+		if (s == NULL) { //one table in query
+			n->u.JOIN.joinattr2->u.QUALATTR.relname =
+			    alias->u.LIST.self->u.ALIAS.relname;
+		} else {
+			s = find_match_in_alias(alias, s);
+			if (s == NULL) {
+				fprintf(stderr, "Error: relation qualifier %s not found\n",
+				        n->u.JOIN.joinattr2->u.QUALATTR.relname);
+				return NULL;
+			}
+			n->u.JOIN.joinattr2->u.QUALATTR.relname = s;
+		}
+	}
+
+	return where;
 }

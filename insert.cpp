@@ -10,12 +10,12 @@
  * 	an error code otherwise
  */
 
-const Status QU_Insert(const string & relation, 
-	const int attrCnt, 
-	const attrInfo attrList[])
+const Status QU_Insert(const string & relation,
+                       const int attrCnt,
+                       const attrInfo attrList[])
 {
 // part 6
-return OK;
+	return OK;
 
 }
 
