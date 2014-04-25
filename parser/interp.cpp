@@ -43,7 +43,7 @@ static int parse_format_string(int format, int *type, int *len);
 static void *value_of(NODE *n);
 static int  type_of(NODE *n);
 static int  length_of(NODE *n);
-static void print_error(char *errmsg, int errval);
+static void print_error(const char *errmsg, int errval);
 static void echo_query(NODE *n);
 static void print_qual(NODE *n);
 static void print_attrnames(NODE *n);
@@ -73,12 +73,10 @@ void interp(NODE *n)
 {
 	int nattrs;				// number of attributes
 	int type;				// attribute type
-	int len;				// attribute length
 	int op;				// comparison operator
 	NODE *temp, *temp1, *temp2;		// temporary node pointers
 	char *attrname;			// temp attribute names
 	void *value;			        // temp value
-	int nbuckets;			        // temp number of buckets
 	int errval;				// returned error value
 	RelDesc relDesc;
 	Status status;
@@ -300,7 +298,7 @@ void interp(NODE *n)
 			                   tmpValue);
 
 			delete [] tmpValue;
-			delete [] attr1.attrValue;
+			delete [] (char*)attr1.attrValue;
 
 			if (errval != OK)
 				error.print((Status)errval);
@@ -462,7 +460,7 @@ void interp(NODE *n)
 		                   attrList);
 
 		for (acnt = 0; acnt < nattrs; acnt++)
-			delete [] attrList[acnt].attrValue;
+			delete [] (char*)attrList[acnt].attrValue;
 
 		if (errval != OK)
 			error.print((Status)errval);
@@ -494,7 +492,6 @@ void interp(NODE *n)
 			attrname = temp2->u.QUALATTR.attrname;
 			op = temp1->u.SELECT.op;
 			type = type_of(temp1->u.SELECT.value);
-			len = length_of(temp1->u.SELECT.value);
 			value = value_of(temp1->u.SELECT.value);
 		}
 
@@ -503,7 +500,6 @@ void interp(NODE *n)
 			attrname = NULL;
 			op = (Operator)0;
 			type = 0;
-			len = 0;
 			value = NULL;
 		}
 
@@ -522,7 +518,7 @@ void interp(NODE *n)
 			                   (Datatype)type,
 			                   (char *)value);
 
-		delete [] value;
+		delete [] (char*)value;
 
 		if (errval != OK)
 			error.print((Status)errval);
@@ -541,10 +537,8 @@ void interp(NODE *n)
 		// get info about primary attribute, if there is one
 		if ((temp = n->u.CREATE.primattr) == NULL) {
 			attrname = NULL;
-			nbuckets = 1;
 		} else {
 			attrname = temp->u.PRIMATTR.attrname;
-			nbuckets = temp->u.PRIMATTR.nbuckets;
 		}
 
 		for(acnt = 0; acnt < nattrs; acnt++) {
@@ -931,7 +925,7 @@ static void *value_of(NODE *n)
 // print_error: prints an error message corresponding to errval
 //
 
-static void print_error(char *errmsg, int errval)
+static void print_error(const char *errmsg, int errval)
 {
 	if (errmsg != NULL)
 		fprintf(stderr, "%s: ", errmsg);

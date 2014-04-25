@@ -14,7 +14,7 @@ extern int yywrap();
 extern void reset_scanner();
 extern void quit();
 
-void yyerror(char *);
+void yyerror(const char *);
 
 extern char *yytext;                    // tokens in string format
 static NODE *parse_tree;                // root of parse tree
@@ -59,7 +59,6 @@ static NODE *parse_tree;                // root of parse tree
 		T_LE
 		T_GT
 		T_GE
-		T_EQ
 		T_NE
 		T_EOF
     		NOTOKEN
@@ -536,7 +535,7 @@ void parse(void)
 }
 
 
-void yyerror(char *s)
+void yyerror(const char *s)
 {
   puts(s);
 }
