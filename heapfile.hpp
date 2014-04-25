@@ -7,11 +7,12 @@
 #include <vector>
 #include <string.h>
 #include <assert.h>
-#include "stdlib.h"
-using namespace std;
+#include <cstdlib>
 
-#include "page.h"
-#include "buf.h"
+#include "page.hpp"
+#include "buf.hpp"
+
+using namespace std;
 
 extern DB db;
 

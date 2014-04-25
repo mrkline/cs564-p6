@@ -3,7 +3,7 @@
 // scan.l: lex spec for simple SQL-like query language
 //
 
-#include "parse.h"
+#include "parse.hpp"
 #include "y.tab.h"
 
 static int get_id(char *s);
@@ -47,4 +47,4 @@ s_num				[+\-]?{num}
 <<EOF>>				{return T_EOF;}
 .				{printf("illegal character [%c]\n", yytext[0]);}
 %%
-#include "scanhelp.C"
+#include "scanhelp.cpp"

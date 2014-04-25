@@ -1,7 +1,7 @@
 #ifndef QUERY_H
 #define QUERY_H
 
-#include "heapfile.h"
+#include "heapfile.hpp"
 
 enum JoinType {NLJoin, SMJoin, HashJoin};
 

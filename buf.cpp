@@ -5,8 +5,8 @@
 #include <fcntl.h>
 #include <iostream>
 #include <stdio.h>
-#include "page.h"
-#include "buf.h"
+#include "page.hpp"
+#include "buf.hpp"
 
 #define ASSERT(c)  { if (!(c)) { \
 		       cerr << "At line " << __LINE__ << ":" << endl << "  "; \

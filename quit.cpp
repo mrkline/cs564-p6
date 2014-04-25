@@ -5,10 +5,10 @@
 #include <fcntl.h>
 #include <iostream>
 #include <stdio.h>
-#include "page.h"
-#include "buf.h"
-#include "catalog.h"
-#include "utility.h"
+#include "page.hpp"
+#include "buf.hpp"
+#include "catalog.hpp"
+#include "utility.hpp"
 
 extern BufMgr *bufMgr;
 extern RelCatalog *relCat;

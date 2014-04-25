@@ -1,12 +1,13 @@
+#include <cstdlib>
 #include <sys/types.h>
 #include <functional>
 #include <string.h>
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include "sort.hpp"
+
 using namespace std;
-#include "sort.h"
-#include "stdlib.h"
 
 #define MIN(a,b)   ((a) < (b) ? (a) : (b))
 

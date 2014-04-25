@@ -1,4 +1,4 @@
-#include "catalog.h"
+#include "catalog.hpp"
 #include <cstring>
 
 const Status RelCatalog::createRel(const string & relation, 

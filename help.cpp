@@ -4,9 +4,9 @@
 #include <stdio.h>
 using namespace std;
 
-#include "error.h"
-#include "utility.h"
-#include "catalog.h"
+#include "error.hpp"
+#include "utility.hpp"
+#include "catalog.hpp"
 
 // define if debug output wanted
 

@@ -2,7 +2,7 @@
 #include <functional>
 #include <iostream>
 using namespace std;
-#include "error.h"
+#include "error.hpp"
 
 void Error::print(Status status)
 {
@@ -76,7 +76,7 @@ void Error::print(Status status)
     case DUPLATTR:     cerr << "duplicate attribute names"; break;
     case RELEXISTS:    cerr << "relation exists already"; break;
     case NOINDEX:      cerr << "no index exists"; break;
-    case ATTRTYPEMISMATCH:   cerr << "attribute type mismatch"; break;
+    case ATTRTYPEMISMATCH:   cerr << "attribute type mismat.hpp"; break;
     case TMP_RES_EXISTS:    cerr << "temp result already exists"; break;    
     case INDEXEXISTS:  cerr << "index exists already"; break;
 

@@ -1,10 +1,9 @@
-#include <stdio.h>
+#include <cstdio>
+#include <cstdlib>
 #include <unistd.h>
-#include "catalog.h"
-#include "query.h"
-#include "stdio.h"
-#include "stdlib.h"
 
+#include "catalog.hpp"
+#include "query.hpp"
 
 DB db;
 Error error;

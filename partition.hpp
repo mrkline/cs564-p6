@@ -1,7 +1,7 @@
 #ifndef PARTITION_H
 #define PARTITION_H
 
-#include "heapfile.h"
+#include "heapfile.hpp"
 
 
 // define if debug output wanted

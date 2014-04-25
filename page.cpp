@@ -1,10 +1,12 @@
 #include <sys/types.h>
 #include <functional>
+#include <cstring>
 #include <string>
 #include <iostream>
+
+#include "page.hpp"
+
 using namespace std;
-#include "page.h"
-#include "string.h"
 
 // page class constructor
 void Page::init(int pageNo)

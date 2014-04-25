@@ -1,5 +1,5 @@
-#include "heapfile.h"
-#include "error.h"
+#include "heapfile.hpp"
+#include "error.hpp"
 
 // routine to create a heapfile
 const Status createHeapFile(const string fileName)

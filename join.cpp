@@ -1,9 +1,10 @@
-#include "catalog.h"
-#include "query.h"
-#include "sort.h"
-#include "joinHT.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <cstdio>
+#include <cstdlib>
+
+#include "catalog.hpp"
+#include "query.hpp"
+#include "sort.hpp"
+#include "joinHT.hpp"
 
 extern JoinType JoinMethod;
 

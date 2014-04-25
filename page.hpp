@@ -1,7 +1,7 @@
 #ifndef PAGE_H
 #define PAGE_H
 
-#include "error.h"
+#include "error.hpp"
 
 struct RID{
     int  pageNo;

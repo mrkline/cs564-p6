@@ -3,7 +3,7 @@
 
 #include <sys/types.h>
 #include <functional>
-#include "error.h"
+#include "error.hpp"
 #include <string.h>
 using namespace std;
 

@@ -11,10 +11,10 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <functional>
-#include "error.h"
+#include "error.hpp"
 #include <string.h>
 using namespace std;
-#include "error.h"
+#include "error.hpp"
 
 // define if debug output wanted
 

@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <fcntl.h>
-#include "catalog.h"
-#include "utility.h"
+#include "catalog.hpp"
+#include "utility.hpp"
 
 
 //

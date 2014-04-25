@@ -3,10 +3,10 @@
 // parser.y: yacc specification for simple SQL-like query language
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "heapfile.h"
-#include "parse.h"
+#include <cstdlib>
+#include <cstdio>
+#include "heapfile.hpp"
+#include "parse.hpp"
 
 extern "C" int isatty(int);
 extern int yylex();

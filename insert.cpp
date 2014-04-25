@@ -1,5 +1,5 @@
-#include "catalog.h"
-#include "query.h"
+#include "catalog.hpp"
+#include "query.hpp"
 
 
 /*

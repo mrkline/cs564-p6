@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "catalog.h"
-#include "utility.h"
+#include "catalog.hpp"
+#include "utility.hpp"
 
 
 #define MAX(a,b) ((a) > (b) ? (a) : (b))

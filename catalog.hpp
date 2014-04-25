@@ -1,7 +1,7 @@
 #ifndef CATALOG_H
 #define CATALOG_H
 
-#include "heapfile.h"
+#include "heapfile.hpp"
 
 
 // define if debug output wanted

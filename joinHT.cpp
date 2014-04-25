@@ -1,9 +1,9 @@
-#include "catalog.h"
-#include "query.h"
-#include "joinHT.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <cstdio>
+#include <cstdlib>
 
+#include "catalog.hpp"
+#include "query.hpp"
+#include "joinHT.hpp"
 
 joinHashTbl::joinHashTbl(const int size, const AttrDesc attr)
 {

@@ -1,9 +1,9 @@
-#include <stdio.h>
+#include <cstdio>
 
-#include "catalog.h"
-#include "query.h"
-#include "utility.h"
-#include "parse.h"
+#include "catalog.hpp"
+#include "query.hpp"
+#include "utility.hpp"
+#include "parse.hpp"
 #include "y.tab.h"
 
 

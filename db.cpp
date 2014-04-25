@@ -6,9 +6,9 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
-#include "page.h"
-#include "db.h"
-#include "buf.h"
+#include "page.hpp"
+#include "db.hpp"
+#include "buf.hpp"
 
 
 #define DBP(p)      (*(DBPage*)&p)

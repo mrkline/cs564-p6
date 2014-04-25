@@ -5,8 +5,8 @@
 #include <fcntl.h>
 #include <iostream>
 #include <stdio.h>
-#include "page.h"
-#include "buf.h"
+#include "page.hpp"
+#include "buf.hpp"
 
 // buffer pool hash table implementation
 

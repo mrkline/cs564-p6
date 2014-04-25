@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include "heapfile.h"
+#include "heapfile.hpp"
 
 // define if debug output wanted
 //#define DEBUGSORT

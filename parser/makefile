@@ -2,7 +2,7 @@
 # Makefile for the parser
 #
 
-.SUFFIXES: .o .C .l
+.SUFFIXES: .o .cpp .l
 
 #
 # Compiler and loader definitions
@@ -29,7 +29,7 @@ YFLAGS =        -y -d
 #
 
 OBJS =		scan.o parse.o nodes.o interp.o yywrap.o
-SRCS =		scan.l parse.y nodes.C interp.C yywrap.c
+SRCS =		scan.l parse.y nodes.cpp interp.cpp yywrap.c
 LIBS =		
 
 all:		../parser.o
@@ -45,16 +45,16 @@ parse.o:	parse.y
 		$(CXX) $(INC) -c y.tab.c -o $@
 		-rm -f y.tab.c
 
-scan.o:		y.tab.h scan.l scanhelp.C
-		-rm -f $*.C
-		$(LEX) $(LFLAGS) scan.l > scan.C
-		$(CXX) $(INC) -c $*.C
-		-rm -f $*.C
+scan.o:		y.tab.h scan.l scanhelp.cpp
+		-rm -f $*.cpp
+		$(LEX) $(LFLAGS) scan.l > scan.cpp
+		$(CXX) $(INC) -c $*.cpp
+		-rm -f $*.cpp
 
 .c.o:
 		$(CC) $(CFLAGS) -c $<
 
-.C.o:
+.cpp.o:
 		$(CXX) $(CXXFLAGS) -c $<
 
 clean:

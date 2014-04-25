@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector>
 using namespace std;
-#include "partition.h"
+#include "partition.hpp"
 
 
 // The Partition class splits a heap file into P partitions, using

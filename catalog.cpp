@@ -1,4 +1,4 @@
-#include "catalog.h"
+#include "catalog.hpp"
 
 
 RelCatalog::RelCatalog(Status &status) :

@@ -1,6 +1,8 @@
-#include "catalog.h"
-#include "query.h"
+#include <cstdio>
+#include <cstdlib>
 
+#include "catalog.hpp"
+#include "query.hpp"
 
 // forward declaration
 const Status ScanSelect(const string & result, 
@@ -33,8 +35,6 @@ const Status QU_Select(const string & result,
 
 
 const Status ScanSelect(const string & result, 
-#include "stdio.h"
-#include "stdlib.h"
 			const int projCnt, 
 			const AttrDesc projNames[],
 			const AttrDesc *attrDesc, 

@@ -1,9 +1,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <stdio.h>
+#include <cstdio>
+#include <cstdlib>
 #include <unistd.h>
-#include "catalog.h"
-#include "stdlib.h"
+#include "catalog.hpp"
 
 DB db;
 BufMgr *bufMgr;

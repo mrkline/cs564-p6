@@ -1,8 +1,9 @@
-#include "heapfile.h"
-#include "parse.h"
+#include <cstring>
+#include <cstdio>
+
+#include "heapfile.hpp"
+#include "parse.hpp"
 #include "y.tab.h"
-#include <string.h>
-#include  <stdio.h>
 
 //
 // total number of nodes available for a given parse-tree

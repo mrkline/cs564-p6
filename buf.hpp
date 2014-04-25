@@ -1,7 +1,7 @@
 #ifndef BUF_H
 #define BUF_H
 
-#include "db.h"
+#include "db.hpp"
 // define if debug output wanted
 //#define DEBUGBUF
 
