@@ -171,6 +171,8 @@ const Status ScanSelect(const string & result,
 	if(status == FILEEOF) {
 		status = OK;
 	}
+	
+	free(data);
 	return status;
 
 
